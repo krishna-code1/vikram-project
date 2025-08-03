@@ -1,0 +1,17 @@
+/* styles.css - CSS for Online Vegetable Market */
+
+body { font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #e9f5e9; }
+
+header { background-color: #388e3c; color: white; padding: 1rem; text-align: center; }
+
+main { padding: 2rem; }
+
+.product { background: white; padding: 1rem; margin: 1rem 0; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); display: flex; justify-content: space-between; align-items: center; }
+
+.product h3 { margin: 0; }
+
+.product p { margin: 0.5rem 0; }
+
+.product button { background-color: #43a047; color: white; border: none; padding: 0.5rem 1rem; cursor: pointer; border-radius: 5px; }
+
+.product-list { display: flex; flex-direction: column; }

@@ -1,0 +1,88 @@
+<!DOCTYPE html><html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Online Vegetable Market</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #e9f5e9;
+    }
+    header {
+      background-color: #388e3c;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+    main {
+      padding: 2rem;
+    }
+    .product {
+      background: white;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .product h3 {
+      margin: 0;
+    }
+    .product p {
+      margin: 0.5rem 0;
+    }
+    .product button {
+      background-color: #43a047;
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+    .product-list {
+      display: flex;
+      flex-direction: column;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Fresh Vegetables Online Market</h1>
+    <p>Buy fresh, organic vegetables at the best price!</p>
+  </header>  <main>
+    <section class="product-list" id="productList">
+      <!-- Vegetable products will appear here -->
+    </section>
+  </main>  <script>
+    const vegetables = [
+      { name: "Tomato", price: 30 },
+      { name: "Potato", price: 25 },
+      { name: "Onion", price: 35 },
+      { name: "Carrot", price: 40 },
+      { name: "Spinach", price: 20 },
+      { name: "Capsicum", price: 45 },
+      { name: "Cabbage", price: 30 },
+      { name: "Cauliflower", price: 50 },
+      { name: "Brinjal", price: 25 }
+    ];
+
+    const productList = document.getElementById('productList');
+
+    vegetables.forEach(veg => {
+      const div = document.createElement('div');
+      div.className = 'product';
+      div.innerHTML = `
+        <div>
+          <h3>${veg.name}</h3>
+          <p>Price: ₹${veg.price}/kg</p>
+        </div>
+        <button onclick="alert('You bought ${veg.name}!')">Buy</button>
+      `;
+      productList.appendChild(div);
+    });
+  </script></body>
+</html>
