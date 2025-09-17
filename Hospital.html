@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>REDDY HOSPITAL</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f0f8ff; }
+    header { background: linear-gradient(135deg, #0077b6, #00b4d8); color: white; padding: 20px; text-align: center; }
+    nav { background: #0096c7; padding: 10px; text-align: center; }
+    nav a { color: white; text-decoration: none; margin: 0 15px; font-weight: bold; }
+    nav a:hover { text-decoration: underline; }
+    .container { width: 90%; margin: 20px auto; }
+    h2 { text-align: center; color: #0077b6; margin-bottom: 20px; }
+
+    /* Services Section */
+    .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
+    .service { background: linear-gradient(135deg, #48cae4, #0096c7); padding: 25px; border-radius: 15px; text-align: center; color: white; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s; }
+    .service:hover { transform: scale(1.08) translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.3); background: linear-gradient(135deg, #00b4d8, #0077b6); }
+
+    /* Doctors Section */
+    .doctors { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .doctor { background: #caf0f8; padding: 20px; border-radius: 10px; text-align: center; transition: transform 0.3s; }
+    .doctor:hover { transform: scale(1.05); background: #ade8f4; }
+
+    /* Appointment Section */
+    form { background: #90e0ef; padding: 20px; border-radius: 10px; width: 70%; margin: auto; }
+    form input, form select { display: block; width: 100%; margin: 10px 0; padding: 10px; border: none; border-radius: 5px; }
+    form button { background: #0077b6; color: white; padding: 12px; border: none; border-radius: 5px; cursor: pointer; font-size: 16px; }
+    form button:hover { background: #023e8a; }
+
+    /* Modal Styles */
+    .modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); }
+    .modal-content { background: #ffffff; margin: 8% auto; padding: 30px; width: 50%; border-radius: 15px; text-align: center; animation: zoomIn 0.5s ease; box-shadow: 0 10px 25px rgba(0,0,0,0.4); }
+    .close { float: right; font-size: 28px; cursor: pointer; color: red; font-weight: bold; }
+    .close:hover { color: darkred; }
+    @keyframes zoomIn { from { transform: scale(0.5); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+
+    footer { background: #0077b6; color: white; text-align: center; padding: 15px; margin-top: 30px; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>REDDY HOSPITAL</h1>
+    <p>Your Health, Our Priority</p>
+  </header>
+
+  <nav>
+    <a href="#about">About Us</a>
+    <a href="#services">Services</a>
+    <a href="#doctors">Doctors</a>
+    <a href="#appointment">Book Appointment</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- About Section -->
+  <div class="container" id="about">
+    <h2>About Our Hospital</h2>
+    <p style="text-align:center;">CityCare Hospital is dedicated to providing world-class healthcare services with advanced technology, expert doctors, and compassionate care for every patient.</p>
+  </div>
+
+  <!-- Services Section -->
+  <div class="container" id="services">
+    <h2>Our Services</h2>
+    <div class="services">
+      <div class="service" onclick="showService('X-Ray')"><h3>🩻 X-Ray</h3><p>High quality digital X-Ray</p></div>
+      <div class="service" onclick="showService('MRI Scan')"><h3>🧲 MRI Scan</h3><p>Advanced MRI scanning</p></div>
+      <div class="service" onclick="showService('Sonography')"><h3>🍼 Sonography</h3><p>Accurate imaging tests</p></div>
+      <div class="service" onclick="showService('CT Scan')"><h3>🖥 CT Scan</h3><p>Detailed 3D scans</p></div>
+      <div class="service" onclick="showService('Pathology')"><h3>🧪 Pathology</h3><p>Blood & lab tests</p></div>
+    </div>
+  </div>
+
+  <!-- Service Modal -->
+  <div id="serviceModal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <h2 id="serviceTitle"></h2>
+      <p id="serviceDescription"></p>
+    </div>
+  </div>
+
+  <!-- Doctors Section -->
+  <div class="container" id="doctors">
+    <h2>Our Expert Doctors</h2>
+    <div class="doctors">
+      <div class="doctor">
+        <h3>Dr. A. Sharma</h3>
+        <p>MD (Cardiology)</p>
+        <p>15+ years experience</p>
+      </div>
+      <div class="doctor">
+        <h3>Dr. B. Mehta</h3>
+        <p>MS (Orthopedics)</p>
+        <p>12+ years experience</p>
+      </div>
+      <div class="doctor">
+        <h3>Dr. C. Iyer</h3>
+        <p>MD (Pediatrics)</p>
+        <p>10+ years experience</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Appointment Section -->
+  <div class="container" id="appointment">
+    <h2>Book an Appointment</h2>
+    <form onsubmit="generateReceipt(event)">
+      <input type="text" id="name" placeholder="Your Name" required>
+      <input type="number" id="age" placeholder="Your Age" required>
+      <select id="doctor" required>
+        <option value="">Select Doctor</option>
+        <option>Dr. A. Sharma (Cardiology)</option>
+        <option>Dr. B. Mehta (Orthopedics)</option>
+        <option>Dr. C. Iyer (Pediatrics)</option>
+      </select>
+      <input type="date" id="date" required>
+      <button type="submit">Confirm Appointment</button>
+    </form>
+  </div>
+
+  <!-- Contact Section -->
+  <div class="container" id="contact">
+    <h2>Contact Us</h2>
+    <p style="text-align:center;">
+      📍 CityCare Hospital, MG Road, Metro City <br>
+      📞 +91 9876543210 <br>
+      📧 contact@citycare.com
+    </p>
+  </div>
+
+  <footer>
+    <p>© 2025 CityCare Hospital | Designed with ❤</p>
+  </footer>
+
+  <script>
+    function showService(service) {
+      const descriptions = {
+        "X-Ray": "🩻 Digital X-Ray with high accuracy for quick diagnosis.",
+        "MRI Scan": "🧲 3D imaging for accurate internal body analysis.",
+        "Sonography": "🍼 Safe ultrasound imaging for various treatments.",
+        "CT Scan": "🖥 Detailed cross-sectional imaging for diagnosis.",
+        "Pathology": "🧪 Complete blood, urine, and lab tests."
+      };
+      document.getElementById("serviceTitle").innerText = service;
+      document.getElementById("serviceDescription").innerText = descriptions[service];
+      document.getElementById("serviceModal").style.display = "block";
+    }
+
+    function closeModal() {
+      document.getElementById("serviceModal").style.display = "none";
+    }
+
+    // Close modal if clicked outside
+    window.onclick = function(event) {
+      let modal = document.getElementById("serviceModal");
+      if (event.target == modal) { modal.style.display = "none"; }
+    }
+
+    // Generate Receipt
+    function generateReceipt(event) {
+      event.preventDefault();
+      let name = document.getElementById("name").value;
+      let age = document.getElementById("age").value;
+      let doctor = document.getElementById("doctor").value;
+      let date = document.getElementById("date").value;
+
+      let receiptWindow = window.open('', '_blank');
+      receiptWindow.document.write("<h1>CityCare Hospital</h1>");
+      receiptWindow.document.write("<h2>Appointment Receipt</h2>");
+      receiptWindow.document.write("<p><b>Name:</b> " + name + "</p>");
+      receiptWindow.document.write("<p><b>Age:</b> " + age + "</p>");
+      receiptWindow.document.write("<p><b>Doctor:</b> " + doctor + "</p>");
+      receiptWindow.document.write("<p><b>Date:</b> " + date + "</p>");
+      receiptWindow.document.write("<p>✅ Appointment Confirmed</p>");
+      receiptWindow.print();
+    }
+  </script>
+
+</body>
+</html>
